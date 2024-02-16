@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Registration</title>
+
+    <style type="text/css">
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        div {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            width: 200px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>User Registration Form</h1>
+
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+
+        <label>Full name:</label>
+        <input type="text" th:field="${user.name}" required>
+
+        <label>Email:</label>
+        <input type="text" th:field="${user.email}" required>
+
+        <label>Password:</label>
+        <input type="password" th:field="${user.password}" required>
+
+        <label>Birthday (yyyy-mm-dd):</label>
+        <input type="Date" th:field="${user.birthday}" required>
+
+        <label>Profession:</label>
+        <select th:field="${user.profession}" required>
+            <option th:each="p : ${professionList}" th:value="${p}" th:text="${p}"/>
+        </select>
+
+        <label>Married?</label>
+        <input type="checkbox" th:field="${user.married}">
+
+        <label>Gender:</label>
+        <input type="radio" th:field="${user.gender}" value="male"/>Male
+        <input type="radio" th:field="${user.gender}" value="female"/>Female
+
+        <label>Note:</label>
+        <textarea rows="5" cols="25" th:field="${user.note}"></textarea>
+
+        <button type="submit">Register</button>
+
+    </form>
+</div>
+</body>
+</html>
